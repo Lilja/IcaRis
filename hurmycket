@@ -4,17 +4,34 @@ if [ "$1" = "vatten" ]; then
 	scale=$(awk "BEGIN { print (3/5) }")
 elif [ "$1" = "ris" ]; then
 	scale=$(awk "BEGIN { print (5/3) }")
+elif [ "$1" = "ris" ]; then
+	scale=$(awk "BEGIN { print (5/3) }")
 fi
 
-calc=$(awk "BEGIN { print ($2*$scale) }" )
+# Set output measurement
+msr="dl"
+
 if [ "$1" = "vatten" ];  then
+	calc=$(awk "BEGIN { print ($2*$scale) }" )
 	resultType="ris";
+elif [ "$1" = "salt" ]; then
+	# Salt scale = 2dl for 3krm. 5krm = 1 tsk.
+	calc=$(awk "BEGIN { print ($2*(3/2)/5) }" )
+	resultType="salt";
+	msr="tsk"
 else
+	calc=$(awk "BEGIN { print ($2*$scale) }" )
 	resultType="vatten";
 fi
-echo -n "För $2 dl $1 krävs "
+
+if [ "$1" = "salt" ]; then
+	echo -n "För $2 dl ris krävs "
+else
+	echo -n "För $2 dl $1 krävs "
+fi
+
 echo -n "$(tput setaf 2)"
 # test printf
 if [ ! $(printf "%.*f" 1 0.5 1>/dev/null 2>&1) ]; then calc=$(echo "$calc" | sed 's#\.#,#g'); fi
 printf '%.*f' 1 $calc
-echo "$(tput op) dl $resultType"
+echo "$(tput op) $msr $resultType"
