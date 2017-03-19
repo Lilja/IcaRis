@@ -4,8 +4,6 @@ if [ "$1" = "vatten" ]; then
 	scale=$(awk "BEGIN { print (3/5) }")
 elif [ "$1" = "ris" ]; then
 	scale=$(awk "BEGIN { print (5/3) }")
-elif [ "$1" = "ris" ]; then
-	scale=$(awk "BEGIN { print (5/3) }")
 fi
 
 # Set output measurement
