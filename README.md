@@ -2,10 +2,10 @@ Vill du beräkna hur mycket vatten eller hur mycket ris du ska ha när du kokar 
 
 Kör detta script.
 
-`./hurmycket vatten 3`
+`./hurmycket vatten 5`
 
-För 3 dl vatten krävs 5,0 dl ris
+För 5 dl vatten krävs 3,0 dl ris
 
-`./hurmycket ris 5`
+`./hurmycket ris 3`
 
-För 5 dl ris krävs 3,0 dl vatten
+För 3 dl ris krävs 5,0 dl vatten
